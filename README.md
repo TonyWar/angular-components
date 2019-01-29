@@ -1,5 +1,7 @@
 # AngularComponents
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/TonyWar/angular-components.svg)](https://greenkeeper.io/)
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.2.2.
 
 ## Development server
