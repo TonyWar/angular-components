@@ -9,6 +9,8 @@
     "moduleResolution": "node",
     "emitDecoratorMetadata": true,
     "experimentalDecorators": true,
+    "strictNullChecks": true,
+    "strictPropertyInitialization": true,
     "importHelpers": true,
     "forceConsistentCasingInFileNames": true,
     "noImplicitReturns": true,
