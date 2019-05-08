@@ -1,23 +1,14 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, Injectable, ErrorHandler } from '@angular/core';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './core/components/component/app.component';
 
-import * as Sentry from '@sentry/browser';
-
-Sentry.init({
-  dsn: 'https://5a30e60c30024fe8a5e948a8360bb21e@sentry.io/1455289'
-});
-
-@Injectable()
-export class SentryErrorHandler implements ErrorHandler {
-  // tslint:disable-next-line: no-any
-  handleError(error: any): void {
-    Sentry.captureException(error.originalError || error);
-    throw error;
-  }
-}
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { ServerErrorInterceptor } from './core/auth/interceptors/server-error.interceptor';
+import { AuthCheckInterceptor } from './core/auth/interceptors/auth-header.interceptor';
+import { SentryErrorHandler } from './develop/sentry/setry.error-handler';
 
 @NgModule({
   declarations: [
@@ -25,10 +16,14 @@ export class SentryErrorHandler implements ErrorHandler {
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
   ],
   providers: [
-    { provide: ErrorHandler, useClass: SentryErrorHandler }
+    { provide: ErrorHandler, useClass: SentryErrorHandler },
+    { provide: HTTP_INTERCEPTORS, useClass: ServerErrorInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthCheckInterceptor, multi: true },
   ],
   bootstrap: [AppComponent]
 })
