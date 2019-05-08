@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
-import { ReplaySubject } from 'rxjs';
+import { ReplaySubject, concat, Observable, of } from 'rxjs';
 import { UserAuthToken } from '../../types/user-auth-token';
 import { UserAuthService } from '../user-auth/user-auth.service';
+import { map } from 'rxjs/internal/operators/map';
 
 @Injectable({
   providedIn: 'root'
@@ -29,5 +30,10 @@ export class AuthenticationService {
     this.userAuthData$.next(undefined);
 
     return this.userService.clearUserData();
+  }
+
+  public checkAuth$(): Observable<boolean> {
+    // tslint:disable-next-line: deprecation
+    return concat(of(false), this.userAuthData$.pipe(map(user => !!user)));
   }
 }
