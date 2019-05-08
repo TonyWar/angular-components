@@ -21,6 +21,8 @@
     "@angular/router": "~7.2.14",
     "@sentry/browser": "^4.5.3",
     "core-js": "^2.5.4",
+    "localforage": "^1.7.3",
+    "ngforage": "^4.0.3",
     "normalize.css": "^8.0.1",
     "rxjs": "~6.5.1",
     "tslib": "^1.9.0",
