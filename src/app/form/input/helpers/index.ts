@@ -39,7 +39,9 @@ export const removeZeroDuplicates = (value: string): string => {
 
       if (array[index] === '0') {
         return '';
-      } else {
+      }
+
+      if (array[index] !== '0') {
         hasNotZero = true;
       }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import { FormBuilder, FormControl } from '@angular/forms';
-import { AmountInputComponent } from 'src/app/form/input/components/amount-input/amount-input.component';
+import { AmountInputComponent } from '../../../form/input/components/amount-input/amount-input.component';
 
 @Component({
   selector: 'app-root',
@@ -25,14 +25,18 @@ export class AppComponent implements OnInit, AfterViewInit {
     // });
     this.form.controls.input1.valueChanges.subscribe(res => {
       console.log('input1', {res});
-      if (this.form.controls.input2.value !== (res / 2).toString() && this.form.controls.input2.value !== ((res / 2) + '.')) {
-        this.form.controls.input2.setValue((res / 2).toString());
+      const secondValue = res / 2;
+      if (this.form.controls.input2.value !== (secondValue).toString() &&
+        this.form.controls.input2.value !== (`${secondValue}.`)) {
+        this.form.controls.input2.setValue((secondValue).toString());
       }
     });
     this.form.controls.input2.valueChanges.subscribe(res => {
       console.log('input2', {res});
-      if (this.form.controls.input1.value !== (res * 2).toString() && this.form.controls.input1.value !== ((res * 2) + '.')) {
-        this.form.controls.input1.setValue((res * 2).toString());
+      const secondValue = res * 2;
+      if (this.form.controls.input1.value !== (secondValue).toString() &&
+      this.form.controls.input1.value !== (`${secondValue}.`)) {
+        this.form.controls.input1.setValue((secondValue).toString());
       }
     });
 
