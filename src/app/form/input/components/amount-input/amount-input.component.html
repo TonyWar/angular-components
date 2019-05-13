@@ -1,3 +1,6 @@
-<div>
-  <input (blur)="onTouched();" (input)="handleInput($event.target.value)" #input [disabled]="disabled">
-</div>
+<input 
+  (blur)="onTouched();" 
+  (input)="handleInput($event.target.value)"
+  [disabled]="disabled"
+  #input
+>

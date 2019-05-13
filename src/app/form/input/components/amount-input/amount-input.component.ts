@@ -1,5 +1,6 @@
 import { Component, OnInit, forwardRef, ViewChild, Renderer2, ElementRef, AfterViewInit, Input } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { getNumberWithDecimalsFromString, removeZeroDuplicates, numberToStringFormat } from '../../helpers/index';
 
 @Component({
   selector: 'app-amount-input',
@@ -24,33 +25,9 @@ export class AmountInputComponent implements ControlValueAccessor, OnInit, After
     let [leftPart, rightPart] = oldValue.split('.');
     const hasDot: boolean = oldValue.includes('.');
     if (leftPart.length > 1) {
-      let hasNotZero = false;
-      leftPart = leftPart
-        .split('')
-        .map((char, index, array) => {
-          if (index + 1 === array.length || hasNotZero) {
-            return char;
-          }
-
-          if (array[index] === '0') {
-            return '';
-          } else {
-            hasNotZero = true;
-          }
-
-          return char;
-        })
-        .join('');
+      leftPart = removeZeroDuplicates(leftPart);
     }
-    leftPart = leftPart
-      .split('')
-      .reverse()
-      .join('')
-      .replace(/(\d{3})/g, '$1 ')
-      .replace(/(^\s+|\s+$)/, '')
-      .split('')
-      .reverse()
-      .join('');
+    leftPart = numberToStringFormat(leftPart);
 
     // tslint:disable-next-line: strict-boolean-expressions
     rightPart = rightPart || '';
@@ -60,7 +37,7 @@ export class AmountInputComponent implements ControlValueAccessor, OnInit, After
 
   set value(value: string) {
     const fixedValue = value.replace(/( )/g, '');
-    this._value = this.getNumberWithDecimalsFromString(fixedValue, this.roundTo);
+    this._value = getNumberWithDecimalsFromString(fixedValue, this.roundTo);
   }
 
   @ViewChild('input') inputRef?: ElementRef;
@@ -73,37 +50,7 @@ export class AmountInputComponent implements ControlValueAccessor, OnInit, After
     }
   }
 
-  getNumberWithDecimalsFromString = (value: string, toString: number = 2): string => {
-    const regex1 = /^[0-9.,]$/;
-    const regex2 = new RegExp(`^[0-9]{1,13}([,.][0-9]{0,${toString}})?$`);
-    const anArray = String(value)
-      .replace(/,/g, '.')
-      .split('');
-    for (let i = 0; i < anArray.length; i++) {
-      if (!regex1.test(anArray[i])) {
-        anArray[i] = '';
-      }
-    }
-    anArray
-      .join('')
-      .split('');
-
-    const arr = [];
-    for (let i = 0; i < anArray.length; i++) {
-      let temp = '';
-      for (let j = 0; j <= i; j++) {
-        temp += anArray[j];
-      }
-      if (regex2.test(temp)) {
-        arr.push(anArray[i]);
-      }
-    }
-
-    return arr.join('');
-  };
-
   handleInput(value: string): void {
-
     this.value = value;
     if (this.inputRef) {
       this.renderer.setProperty(this.inputRef.nativeElement, 'value', this.value);
