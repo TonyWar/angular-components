@@ -10,7 +10,7 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "styl"
+          "styleext": "less"
         }
       },
       "architect": {
@@ -27,7 +27,8 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.styl"
+              "node_modules/normalize.css/normalize.css",
+              "src/styles.less"
             ],
             "scripts": []
           },
@@ -83,7 +84,8 @@
             "tsConfig": "src/tsconfig.spec.json",
             "karmaConfig": "src/karma.conf.js",
             "styles": [
-              "src/styles.styl"
+              "node_modules/normalize.css/normalize.css",
+              "src/styles.less"
             ],
             "scripts": [],
             "assets": [
@@ -100,6 +102,11 @@
               "src/tsconfig.spec.json"
             ],
             "exclude": [
+              "**/main.ts",
+              "**/test.ts",
+              "**/polyfills.ts",
+              "**/*spec*",
+              "**/e2e/**",
               "**/node_modules/**"
             ]
           }
@@ -128,6 +135,11 @@
           "options": {
             "tsConfig": "e2e/tsconfig.e2e.json",
             "exclude": [
+              "**/main.ts",
+              "**/test.ts",
+              "**/polyfills.ts",
+              "**/*spec*",
+              "**/e2e/**",
               "**/node_modules/**"
             ]
           }

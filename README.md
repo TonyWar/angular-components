@@ -33,3 +33,4 @@ https://sentry.io/tonywar/tonywar/
 
 # https://semaphoreci.com
 greenkeeper.io
+codacy (https://app.codacy.com/wizard/projects)
