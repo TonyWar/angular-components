@@ -8,7 +8,6 @@ import { retryWhen } from 'rxjs/internal/operators/retryWhen';
 
 @Injectable()
 export class ServerErrorInterceptor implements HttpInterceptor {
-  constructor() { }
   // tslint:disable-next-line: no-any
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     return next.handle(request)
@@ -25,9 +24,9 @@ export class ServerErrorInterceptor implements HttpInterceptor {
           scan((count, currenError) => {
             if (count > 2) {
               throw currenError;
-            } else {
-              return count + 1;
             }
+
+            return count + 1;
           }, 0),
         ))
       );
