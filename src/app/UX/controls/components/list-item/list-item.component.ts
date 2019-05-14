@@ -8,38 +8,36 @@ import { Highlightable } from '@angular/cdk/a11y';
 })
 export class ListItemComponent implements Highlightable {
   @Input() item: any;
+  @Input() filteredField: any;
   public _isActive = false;
 
-  @HostBinding('class.active') get isActive() {
+  @HostBinding('class.active') get isActive(): boolean {
     return this._isActive;
+  }
+
+  @Output() readonly customClick: EventEmitter<string> = new EventEmitter<string>();
+  handleClick = (e: Event): void => {
+    this.customClick.emit(this.item.id);
   };
 
-  @Output() customClick = new EventEmitter<string>();
-  handleClick = (e: any) => {
-    e.preventDefault();
-    e.stopPropagation();
-    this.customClick.emit(this.item.id);
+  handleMouseDown(e: Event): void {
+    e.stopImmediatePropagation(); // stops event bubbling
+    e.preventDefault();  // stops default browser action (focus)
   }
 
-  handleMouseDown(e: any) {
-    console.log('mouse down');
-    e.stopImmediatePropagation(); //stops event bubbling    
-    e.preventDefault();  //stops default browser action (focus)
-  }
-
-  setActiveItem() {
+  setActiveItem(): void {
     this.setActiveStyles();
   }
 
-  setActiveStyles() {
+  setActiveStyles(): void {
     this._isActive = true;
-  };
+  }
 
-  setInactiveStyles() {
+  setInactiveStyles(): void {
     this._isActive = false;
   }
 
   getLabel() {
-    return this.item.name;
+    return this.item[this.filteredField];
   }
 }
