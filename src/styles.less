@@ -8,4 +8,23 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  padding: 2em;
+}
+
+input, 
+textarea{
+	border: 1px solid #22c1ff !important;
+}
+
+input:focus, 
+textarea:focus {
+  box-shadow: 0 0 5px #22c1ff !important;
+	border: 1px solid #22c1ff !important;
+}
+
 @import './app/UI/styles/helpers/index.less';
