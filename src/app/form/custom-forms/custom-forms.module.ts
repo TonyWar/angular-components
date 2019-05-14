@@ -4,7 +4,7 @@ import { AmountFormComponent } from './components/amount-form/amount-form.compon
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomControlsModule } from '../custom-controls/custom-controls.module';
 import { ExampleSearchableListComponent } from './components/example-searchable-list/example-searchable-list.component';
-import { ControlsModule } from 'src/app/UX/controls/controls.module';
+import { ControlsModule } from '../../UX/controls/controls.module';
 
 @NgModule({
   declarations: [
