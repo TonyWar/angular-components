@@ -1,40 +1,55 @@
-import { Component, ViewChildren, QueryList, AfterViewInit, ViewChild, ElementRef, Input } from '@angular/core';
+import {
+  Component,
+  ViewChildren,
+  QueryList,
+  AfterViewInit,
+  ViewChild,
+  ElementRef,
+  Input,
+  OnInit,
+  ContentChild,
+  ContentChildren,
+  AfterContentInit,
+  Output,
+  EventEmitter
+} from '@angular/core';
 import { ListItemComponent } from '../list-item/list-item.component';
 import { ActiveDescendantKeyManager } from '@angular/cdk/a11y';
 import { ENTER } from '@angular/cdk/keycodes';
+import { Subject } from 'rxjs';
 
 @Component({
   selector: 'app-searchable-list',
   templateUrl: './searchable-list.component.html',
   styleUrls: ['./searchable-list.component.less']
 })
-export class SearchableListComponent implements AfterViewInit {
-  @Input() data: any;
-  @Input() filteredField: any;
-  @ViewChildren(ListItemComponent) items: QueryList<ListItemComponent> | undefined;
-  @ViewChild('input') input?: ElementRef;
-
+export class SearchableListComponent implements OnInit, AfterContentInit {
+  @Input() keyDownObserver!: Subject<KeyboardEvent>;
+  @ContentChildren(ListItemComponent) items!: QueryList<ListItemComponent>;
   private keyManager: ActiveDescendantKeyManager<ListItemComponent> | undefined;
-  public active = false;
+  // public active = false;
   public model = '';
+  @Output() readonly selectedItemId = new EventEmitter<string>();
 
-  ngAfterViewInit() {
-    this.keyManager = new ActiveDescendantKeyManager(this.items!)
-    .withWrap()
-    .withTypeAhead();
+  // TODO: add unsubscribe (maybe by @AutoUnsubscribe)
+  ngOnInit(): void {
+    this.keyDownObserver.subscribe((event: KeyboardEvent) => {
+      this.onKeydown(event);
+    });
   }
 
-  onKeydown(event: any) {
-    if (event.keyCode === ENTER) {
-      this.model = this.keyManager!.activeItem!.getLabel();
-    } else {
-      this.keyManager!.onKeydown(event);
+  ngAfterContentInit(): void {
+    this.keyManager = new ActiveDescendantKeyManager(this.items)
+      .withWrap()
+      .withTypeAhead();
+  }
+
+  onKeydown(event: KeyboardEvent): void {
+    // tslint:disable-next-line: deprecation
+    if (event.keyCode === ENTER && this.keyManager && this.keyManager.activeItem !== null) {
+      this.selectedItemId.emit(this.keyManager.activeItem.key);
+    } else if (this.keyManager) {
+      this.keyManager.onKeydown(event);
     }
-  }
-
-  handleCustomClick(id: string) {
-    const index = this.items!.toArray().findIndex((list: ListItemComponent) => list.item.id === id);
-    this.keyManager!.setActiveItem(index);
-    this.model = this.keyManager!.activeItem!.getLabel();
   }
 }

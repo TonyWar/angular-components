@@ -17,6 +17,8 @@ import { ClickOutsideDirective } from './directives/click-outside.directive';
   ],
   exports: [
     SearchableListComponent,
+    ListItemComponent,
+    FilterPipe
   ]
 })
 export class ControlsModule { }

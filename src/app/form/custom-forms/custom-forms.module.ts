@@ -3,18 +3,23 @@ import { CommonModule } from '@angular/common';
 import { AmountFormComponent } from './components/amount-form/amount-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { CustomControlsModule } from '../custom-controls/custom-controls.module';
+import { ExampleSearchableListComponent } from './components/example-searchable-list/example-searchable-list.component';
+import { ControlsModule } from 'src/app/UX/controls/controls.module';
 
 @NgModule({
   declarations: [
-    AmountFormComponent
+    AmountFormComponent,
+    ExampleSearchableListComponent
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    CustomControlsModule
+    CustomControlsModule,
+    ControlsModule
   ],
   exports: [
-    AmountFormComponent
+    AmountFormComponent,
+    ExampleSearchableListComponent
   ]
 })
 export class CustomFormsModule { }

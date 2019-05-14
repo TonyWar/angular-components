@@ -7,8 +7,7 @@ import { Highlightable } from '@angular/cdk/a11y';
   styleUrls: ['./list-item.component.less']
 })
 export class ListItemComponent implements Highlightable {
-  @Input() item: any;
-  @Input() filteredField: any;
+  @Input() key!: string;
   public _isActive = false;
 
   @HostBinding('class.active') get isActive(): boolean {
@@ -17,7 +16,7 @@ export class ListItemComponent implements Highlightable {
 
   @Output() readonly customClick: EventEmitter<string> = new EventEmitter<string>();
   handleClick = (e: Event): void => {
-    this.customClick.emit(this.item.id);
+    this.customClick.emit(this.key);
   };
 
   handleMouseDown(e: Event): void {
@@ -37,7 +36,7 @@ export class ListItemComponent implements Highlightable {
     this._isActive = false;
   }
 
-  getLabel() {
-    return this.item[this.filteredField];
+  getLabel(): string {
+    return this.key;
   }
 }

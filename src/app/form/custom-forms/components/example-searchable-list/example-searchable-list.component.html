@@ -1,0 +1,26 @@
+<p>
+  example-searchable-list works!
+</p>
+<div [style.width.px]="300">
+  <div class="form-group">
+    <input 
+    class="form-control" 
+    placeholder="Search..."
+    (input)="currentValue = $event.target.value"
+    (keydown)="onKeydown($event)"
+    #input
+    >
+  </div>
+  <div>
+    <app-searchable-list [keyDownObserver]="observer$" (selectedItemId)="handleCustomClick($event);">
+      <app-list-item 
+      *ngFor="let item of users | filter: filteredField : currentValue; index as index" 
+      [key]="item.id"
+      class="list-group__item"
+      (customClick)="handleCustomClick($event);">
+        <div>{{item.name}} {{index}}</div>
+      </app-list-item>
+    </app-searchable-list>
+  </div>
+</div>
+
