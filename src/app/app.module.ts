@@ -11,6 +11,7 @@ import { ServerErrorInterceptor } from './core/auth/interceptors/server-error.in
 import { AuthCheckInterceptor } from './core/auth/interceptors/auth-header.interceptor';
 import { SentryErrorHandler } from './develop/sentry/setry.error-handler';
 import { FormModule } from './form/form.module';
+import { CustomFormsModule } from './form/custom-forms/custom-forms.module';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { FormModule } from './form/form.module';
     HttpClientModule,
     BrowserAnimationsModule,
     ReactiveFormsModule,
-    FormModule
+    FormModule,
+    CustomFormsModule
   ],
   providers: [
     { provide: ErrorHandler, useClass: SentryErrorHandler },
