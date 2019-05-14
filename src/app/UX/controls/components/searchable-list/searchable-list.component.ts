@@ -77,6 +77,6 @@ export class SearchableListComponent implements AfterViewInit {
     const index = this.items!.toArray().findIndex(list => list.item.id === id);
     this.keyManager!.setActiveItem(index);
     this.model = this.keyManager!.activeItem!.getLabel();
-    this.input!.nativeElement.focus();
+    // this.input!.nativeElement.focus();
   }
 }

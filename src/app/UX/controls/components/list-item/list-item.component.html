@@ -1,6 +1,8 @@
 <div 
   [class.active]="_isActive"
   class="list-item"
-  (click)="handleClick($event)">
+  (click)="handleClick($event)"
+  (mousedown)="handleMouseDown($event);"
+  >
   <ng-content></ng-content>
 </div>
