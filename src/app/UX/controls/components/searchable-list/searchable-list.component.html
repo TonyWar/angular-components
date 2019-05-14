@@ -1,3 +1,30 @@
-<p>
-  Test commit
-</p>
+<div 
+	class="searchable-list"
+	click-outside
+	(clickOutside)="active = false">
+
+  <div class="form-group">
+		<input 
+		class="form-control" 
+		placeholder="Search..." 
+		(keydown)="onKeydown($event)"
+		(focus)="active = true"
+		#input>
+  </div>
+
+	<section
+	*ngIf="active"
+	class="list-group"
+	>
+		<app-list-item 
+		*ngFor="let user of users | filter: 'name' : input.value; index as index" 
+		[item]="user"
+		class="list-group__item"
+		(customClick)="handleCustomClick($event);">
+      {{user.name}}
+    </app-list-item>
+  </section>
+
+  <p style="margin-top: 1em" *ngIf="model">Model: {{model}}</p>
+
+</div>
