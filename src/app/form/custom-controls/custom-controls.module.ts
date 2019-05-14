@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { InputModule } from './input/input.module';
 
 @NgModule({
-  declarations: [],
   imports: [
     CommonModule
   ],
@@ -11,4 +10,4 @@ import { InputModule } from './input/input.module';
     InputModule
   ]
 })
-export class FormModule { }
+export class CustomControlsModule { }

@@ -1,7 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule, Injectable, ErrorHandler } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './core/components/component/app.component';
@@ -10,6 +9,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ServerErrorInterceptor } from './core/auth/interceptors/server-error.interceptor';
 import { AuthCheckInterceptor } from './core/auth/interceptors/auth-header.interceptor';
 import { SentryErrorHandler } from './develop/sentry/setry.error-handler';
+import { CustomFormsModule } from './form/custom-forms/custom-forms.module';
 import { FormModule } from './form/form.module';
 import { ControlsModule } from './UX/controls/controls.module';
 
@@ -22,6 +22,7 @@ import { ControlsModule } from './UX/controls/controls.module';
     AppRoutingModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    CustomFormsModule,
     ReactiveFormsModule,
     FormModule,
     ControlsModule,
