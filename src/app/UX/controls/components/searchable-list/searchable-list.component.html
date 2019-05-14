@@ -9,6 +9,7 @@
 		placeholder="Search..." 
 		(keydown)="onKeydown($event)"
 		(focus)="active = true"
+		(blur)="active = false"
 		#input>
   </div>
 
@@ -17,14 +18,15 @@
 	class="list-group"
 	>
 		<app-list-item 
-		*ngFor="let user of users | filter: 'name' : input.value; index as index" 
-		[item]="user"
+		*ngFor="let item of data | filter: filteredField : input.value; index as index" 
+		[item]="item"
+		[filteredField]="filteredField"
 		class="list-group__item"
 		(customClick)="handleCustomClick($event);">
-      {{user.name}}
+      {{item[filteredField] }}
     </app-list-item>
   </section>
 
-  <p style="margin-top: 1em" *ngIf="model">Model: {{model}}</p>
+  <p style="margin-top: 1em" *ngIf="model">Model: {{ model }}</p>
 
 </div>
