@@ -6,7 +6,7 @@ import { SearchableListComponent } from './UX/controls/components/searchable-lis
 
 const routes: Routes = [
   {path: clientRoutes.amountFormPage, component: AmountFormComponent},
-  { path: 'searchable-list', component: SearchableListComponent}
+  {path: clientRoutes.searchableList, component: SearchableListComponent},
 ];
 
 @NgModule({

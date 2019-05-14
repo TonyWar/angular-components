@@ -19,10 +19,6 @@ export class ListItemComponent implements Highlightable {
     this.customClick.emit(this.item.id);
   }
 
-  setActiveItem() {
-    this.setActiveStyles();
-  }
-
   setActiveStyles() {
     this._isActive = true;
   };
