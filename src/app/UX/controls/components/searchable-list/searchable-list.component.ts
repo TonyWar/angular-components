@@ -27,8 +27,6 @@ export class SearchableListComponent implements OnInit, AfterContentInit {
   @Input() keyDownObserver!: Subject<KeyboardEvent>;
   @ContentChildren(ListItemComponent) items!: QueryList<ListItemComponent>;
   private keyManager: ActiveDescendantKeyManager<ListItemComponent> | undefined;
-  // public active = false;
-  public model = '';
   @Output() readonly selectedItemId = new EventEmitter<string>();
 
   // TODO: add unsubscribe (maybe by @AutoUnsubscribe)
