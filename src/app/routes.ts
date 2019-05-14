@@ -1,3 +1,4 @@
 export const clientRoutes = {
-  amountFormPage: 'amount-form'
+  amountFormPage: 'amount-form',
+  searchableList: 'searchable-list',
 };
