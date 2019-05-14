@@ -16,7 +16,6 @@ export class ListItemComponent implements Highlightable {
 
   @Output() customClick = new EventEmitter<string>();
   handleClick = (e: any) => {
-    console.log('Clicked item', this.item)
     this.customClick.emit(this.item.id);
   }
 

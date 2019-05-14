@@ -74,10 +74,8 @@ export class SearchableListComponent implements AfterViewInit {
   }
 
   handleCustomClick(id: string) {
-    console.log('In handleCustomClick')
-    const index = this.users.findIndex(user => user.id === id);
+    const index = this.items!.toArray().findIndex(list => list.item.id === id);
     this.keyManager!.setActiveItem(index);
-    console.log('Active item', this.keyManager!.activeItem, 'id', id, 'index', index)
     this.model = this.keyManager!.activeItem!.getLabel();
     this.input!.nativeElement.focus();
   }
