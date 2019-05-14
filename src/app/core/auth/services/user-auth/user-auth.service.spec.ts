@@ -2,11 +2,13 @@
 
 import { TestBed, async, inject } from '@angular/core/testing';
 import { UserAuthService } from './user-auth.service';
+import { HttpClientModule } from '@angular/common/http';
 
 describe('Service: UserAuth', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [UserAuthService]
+      providers: [UserAuthService],
+      imports: [HttpClientModule],
     });
   });
 
