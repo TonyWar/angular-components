@@ -1,4 +1,4 @@
-import { Component,  Input, HostBinding, Output, EventEmitter } from '@angular/core';
+import { Component, Input, HostBinding, Output, EventEmitter } from '@angular/core';
 import { Highlightable } from '@angular/cdk/a11y';
 
 @Component({
@@ -16,7 +16,15 @@ export class ListItemComponent implements Highlightable {
 
   @Output() customClick = new EventEmitter<string>();
   handleClick = (e: any) => {
+    e.preventDefault();
+    e.stopPropagation();
     this.customClick.emit(this.item.id);
+  }
+
+  handleMouseDown(e: any) {
+    console.log('mouse down');
+    e.stopImmediatePropagation(); //stops event bubbling    
+    e.preventDefault();  //stops default browser action (focus)
   }
 
   setActiveItem() {
