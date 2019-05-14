@@ -5,7 +5,7 @@ import { AmountFormComponent } from './form/custom-forms/components/amount-form/
 import { SearchableListComponent } from './UX/controls/components/searchable-list/searchable-list.component';
 
 const routes: Routes = [
-  {path: clientRoutes.amountFormPage, component: AmountFormComponent}
+  {path: clientRoutes.amountFormPage, component: AmountFormComponent},
   { path: 'searchable-list', component: SearchableListComponent}
 ];
 
