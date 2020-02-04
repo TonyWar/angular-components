@@ -19,7 +19,7 @@
     "@angular/platform-browser": "~7.2.14",
     "@angular/platform-browser-dynamic": "~7.2.14",
     "@angular/router": "~7.2.14",
-    "@sentry/browser": "^5.2.0",
+    "@sentry/browser": "^5.12.1",
     "core-js": "^3.0.1",
     "localforage": "^1.7.3",
     "ngforage": "^4.0.3",
