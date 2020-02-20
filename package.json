@@ -25,7 +25,7 @@
     "ngforage": "^4.0.3",
     "normalize.css": "^8.0.1",
     "rxjs": "~6.5.2",
-    "tslib": "^1.9.0",
+    "tslib": "^1.11.0",
     "zone.js": "~0.9.1"
   },
   "devDependencies": {
